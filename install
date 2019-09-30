@@ -1,0 +1,30 @@
+version="$1"
+app_name="$2"
+
+git clone --depth 1 "https://github.com/DiveIntoHacking/docker-compose-node-vx.x.x.git" "${app_name}"
+cd "${app_name}"
+touch .bash_history
+curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore
+
+# append files in .gitignore
+tee -a .gitignore > /dev/null << EOF
+
+# added below by diveintohacking
+.bash_history
+/.aws/
+EOF
+
+# create node Dockerfile
+cat << EOF > docker/app/Dockerfile
+FROM node:${version}
+
+ENV APP_PATH=/app
+RUN mkdir \$APP_PATH
+WORKDIR \$APP_PATH
+EOF
+
+# git commit
+git add .gitignore docker/app/Dockerfile && git commit -m "create node with docker project"
+
+# build docker
+docker-compose build
