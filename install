@@ -1,7 +1,7 @@
 version="$1"
 app_name="$2"
 
-git clone --depth 1 "https://github.com/DiveIntoHacking/docker-compose-node-vx.x.x.git" "${app_name}"
+git clone --depth 1 "https://github.com/DiveIntoHacking/docker-compose-node.git" "${app_name}"
 cd "${app_name}"
 touch .bash_history
 curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore
