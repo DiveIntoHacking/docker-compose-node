@@ -10,7 +10,7 @@ curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/Nod
 tee -a .gitignore > /dev/null << EOF
 
 # added below by diveintohacking
-.bash_history
+/.bash_history
 /.aws/
 EOF
 
